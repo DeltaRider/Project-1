@@ -1,0 +1,14 @@
+.site {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.container {
+    background-color: aquamarine;
+    width: 960px;
+    height: 560px;
+    display: inline-block; 
+    background-image: url("../images/map-bayarea.png");
+    background-size: cover;
+}
