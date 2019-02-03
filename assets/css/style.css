@@ -20,6 +20,7 @@ html, body {
     background-image: url("../images/map-bayarea.png");
     background-size: 100% 100%;
     box-shadow: 0px 0px 50px black;
+    position: relative;
 }
 
 .textarea {
@@ -33,7 +34,43 @@ html, body {
     color: darkslategray;
 }
 
-.textarea p {
+.textarea h2 {
     font-size: 17px;
     color: darkslategray;
+}
+
+.textarea h3 {
+    margin-top: 50px;
+    font-size: 25px;
+    color: darkslategray;
+}
+
+.starred {
+   background-color:rgba(0, 0, 0, 0.1);
+   width: 500px;
+   height: 400px; 
+}
+
+.view {
+    height: 50px;
+    width: 120px;
+    background-color: darkslategray;
+    border: 1px solid darkslategray;
+    color: ivory;
+    font-size: 12px;
+    margin-top: 30px;
+    border-radius: 7px;
+}
+
+.view:hover {
+    box-shadow: 0px 0px 20px black;
+}
+
+#sf {
+    width: 180px;
+    height: 30px;
+    background-color:rgba(0, 0, 0, 0.1);
+    position: absolute;
+    right: 407px;
+    bottom: 407px;
 }
