@@ -14,14 +14,52 @@
             <div class="textarea">
                 <h1>Bay Area Weather Map</h1>
                 <h2>A site to help you manage the micro-climates of the San Francisco Bay Area</h2>
+                <img id="star" src="./assets/images/icons/icon-star.png" alt="star icon">
                 <h3>Starred Places</h3>
                 <div class="starred">
                     
                 </div>
                 <button onclick="location.href='view.html'" class="view">Starred View</button>
             </div>
-            <div id="sf" class="bay"></div>
+            <!-- San Francisco -->
+            <div id="sf" class="bay">
+                <div class="leftboxL">
+                    <img class="staricon" src="./assets/images/icons/icon-star.png" alt="star icon">
+                </div>
+                <div class="midboxL">
+                    <p id="temp">57&#176;</p>
+                </div>
+                <div class="rightboxL">
+                    <img class="weathericon" src="assets/images/icons/icon-heavyshowers.png" alt="weather icon">
+                </div>
+            </div>
+            <!-- San Jose -->
+            <div id="sj" class="bay">
+                <div class="leftboxL">
+                    <img class="staricon" src="./assets/images/icons/icon-star.png" alt="star icon">
+                </div>
+                <div class="midboxL">
+                    <p id="temp">62&#176;</p>
+                </div>
+                <div class="rightboxL">
+                    <img class="weathericon" src="assets/images/icons/icon-lightrain.png" alt="weather icon">
+                </div>
+            </div>
+            <!-- Oakland -->
+            <div id="oak" class="bay">
+                <div class="leftboxR">
+                    <img class="staricon" src="./assets/images/icons/icon-star.png" alt="star icon">
+                </div>
+                <div class="midboxR">
+                    <p id="temp">65&#176;</p>
+                </div>
+                <div class="rightboxR">
+                    <img class="weathericon" src="assets/images/icons/icon-clear.png" alt="weather icon">
+                </div>
+            </div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
+    <script type="text/javascript" src="./assets/javascript/code.js"></script>
 </body>
 </html>
