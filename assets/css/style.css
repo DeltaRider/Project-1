@@ -183,3 +183,35 @@ html, body {
     text-align: center;
     vertical-align: middle;
 }
+
+.popup #popup {
+    width: 500px;
+    position: absolute;
+    right: 340px;
+    bottom: 230px;
+    border-radius: 22px;
+    box-shadow: 0px 0px 20px 5px rgba(0, 0, 0);
+}
+
+.popup.hidden {
+    visibility:hidden;
+}
+
+#close {
+    font-family: maintext;
+    position: absolute;
+    right: 370px;
+    bottom: 500px;
+}
+
+#close button {
+    padding-top: 0px;
+}
+
+#popstar {
+    height: 30px;
+    position: absolute;
+    top: 160px;
+    left: 365px;
+
+}
