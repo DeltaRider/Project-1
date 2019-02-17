@@ -1,4 +1,3 @@
-var user;
 var session;
 var favCities = [];
 
