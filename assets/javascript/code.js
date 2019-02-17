@@ -148,26 +148,38 @@ $('#close').on('click', function(){
 });
 
 $('.staricon').on('mouseover', function(){
-	$(this).attr('src', './assets/images/icons/icon-star-gold.png');
+    if ($(this).attr('fav') == 'n'){
+        $(this).attr('src', './assets/images/icons/icon-star-gold.png');
+    }
 }).on('mouseleave', function(){
-	$(this).attr('src', './assets/images/icons/icon-star.png');
+    if ($(this).attr('fav') == 'n'){
+        $(this).attr('src', './assets/images/icons/icon-star.png');
+    }
 }).on('click', function(){
-    $(this).attr('src', './assets/images/icons/icon-star-gold.png');
-});
-
-$('.staricon').on('click', function(){
     var cityName = $(this).parent().parent().attr('value');
     var cityCode = $(this).parent().parent().attr('data');
+    divName = cityName.replace(/\s/g, '');
     if (favCities.includes(cityCode)){
         console.log("City Favorited Already")
     } else {favCities.push(cityCode);
-        $('.starred').append(`<div data="${cityCode}" class="citylist"><button class="delete">x</button> ${cityName}</div>`);
+        $('.starred').append(`<div id="${divName}" data="${cityCode}" class="citylist"><button class="delete">x</button> ${cityName}</div>`);
         database.ref("/favorites/" + session).set(favCities);
+    }
+    if ($(this).attr('fav') == 'n'){
+        $(this).attr('src', './assets/images/icons/icon-star-gold.png');
+        $(this).attr('fav', 'y');
+    } else if ($(this).attr('fav') == 'y'){
+        $(this).attr('src', './assets/images/icons/icon-star.png');
+        favCities= favCities.filter(e => e != cityCode);
+        database.ref("/favorites/" + session).set(favCities)
+        $('.starred #'+divName).remove();
+        $(this).attr('fav', 'n'); 
     }
 });
 
 $(document).on('click', '.delete', function(){
     var cityName = $(this).parent().attr('data');
+    $('.container').find(`[data='${cityName}']`).children().children().attr('fav','n').attr('src', './assets/images/icons/icon-star.png');
     favCities= favCities.filter(e => e != cityName);
     $(this).parent().remove();
     database.ref("/favorites/" + session).set(favCities)
