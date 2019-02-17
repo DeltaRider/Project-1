@@ -1,3 +1,13 @@
+var config = {
+    apiKey: "AIzaSyBED2-RBxkaRUznE8g9C7YL2wQxNfZcC54",
+    authDomain: "bay-area-weather-map.firebaseapp.com",
+    databaseURL: "https://bay-area-weather-map.firebaseio.com",
+    projectId: "bay-area-weather-map",
+    storageBucket: "",
+    messagingSenderId: "466784019631"
+  };
+  firebase.initializeApp(config);
+
 function titleCase(str) {
     var splitStr = str.toLowerCase().split(' ');
     for (var i = 0; i < splitStr.length; i++) {
