@@ -1,5 +1,3 @@
-var arr_cities = [];
-
 function titleCase(str) {
     var splitStr = str.toLowerCase().split(' ');
     for (var i = 0; i < splitStr.length; i++) {
@@ -46,8 +44,6 @@ $('.bay').on('click', function(){
             wind_Speed : response.wind.speed,
             icon : response.weather[0].icon
         }
-        console.log(response);
-        arr_cities.push(cities);
         $('#datapop').html(`<span id="name" class="data">${response.name}</span>
         <span id="sunrise" class="data">${timeConverter(response.sys.sunrise)} AM</span>
         <span id="sunset" class="data">${timeConverter(response.sys.sunset)} PM</span>
