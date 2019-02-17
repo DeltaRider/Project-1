@@ -215,3 +215,71 @@ html, body {
     left: 365px;
 
 }
+
+.data {
+    font-family: maintext;
+    color: white;
+}
+
+#name {
+    position: absolute;
+    top: 165px;
+    left: 415px;
+    font-size: 30px;
+}
+
+#sunrise {
+    position: absolute;
+    top: 223px;
+    left: 362px;
+    font-size: 20px;
+}
+
+#sunset {
+    position: absolute;
+    top: 223px;
+    left: 633px;
+    font-size: 20px;
+}
+
+#forecast {
+    position: absolute;
+    top: 272px;
+    left: 362px;
+    font-size: 20px;
+}
+
+#humid {
+    position: absolute;
+    top: 272px;
+    left: 633px;
+    font-size: 20px;
+}
+
+#wind {
+    position: absolute;
+    top: 321px;
+    left: 362px;
+    font-size: 20px;
+}
+
+#cloud {
+    position: absolute;
+    top: 321px;
+    left: 633px;
+    font-size: 20px;
+}
+
+#maxtemp {
+    position: absolute;
+    top: 368px;
+    left: 362px;
+    font-size: 20px;
+}
+
+#mintemp {
+    position: absolute;
+    top: 368px;
+    left: 633px;
+    font-size: 20px;
+}
