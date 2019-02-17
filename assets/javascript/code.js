@@ -32,8 +32,7 @@ function timeConverter(unix){
 $('.bay').on('click', function(){
     $(".popup").removeClass("hidden");
     var location = $(this).attr('value');
-    var queryUrl = 'http://api.openweathermap.org/data/2.5/weather?id=' + location + '&appid=28ef31e8234d931c23e88a55b6504921';
-    // var queryUrl = 'http://api.openweathermap.org/data/2.5/weather?id=' + location + '&appid=ce6c4d281dc8a0dfa66efef63172fefe';
+    var queryUrl = 'http://api.openweathermap.org/data/2.5/weather?id=' + location + '&appid=ce6c4d281dc8a0dfa66efef63172fefe';
     $.ajax({
 		url:queryUrl,
 		method:'GET'  
