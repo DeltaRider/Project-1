@@ -1,5 +1,23 @@
-var session;
-var favCities = [];
+var conditionsObj = {
+	'01d': 'clear',
+	'01n': 'clearnight',
+	'02d': 'partlycloudy',
+	'02n': 'cloudynight',
+	'03d': 'cloudy',
+	'03n': 'cloudynight',
+	'04d': 'cloudy',
+	'04n': 'cloudynight',
+	'09d': 'lightrain',
+	'09n': 'lightrain',
+	'10d': 'heavyshowers',
+	'10n': 'heavyshowers',
+	'11d': 'thunderstorms',
+	'11n': 'thunderstorms',
+	'13d': 'hail',
+	'13n': 'hail',
+	'50d': 'fog',
+	'50n': 'fog'
+};
 
 var config = {
     apiKey: "AIzaSyBa1e0L-DemkmVuqWy1XrxsrI95fP59GC8",
@@ -22,6 +40,55 @@ connectedRef.on("value", function(snap) {
         con.onDisconnect().remove();
     }
 });
+
+var session;
+var favCities = [];
+var citiesOnMap = [];
+var cityData = [];
+
+function createCitiesArray() {
+	for (var i = 0; i < $('.bay').length; i++) {
+	citiesOnMap.push($('.bay').eq(i).attr('data'));
+	}
+	fetchData(citiesOnMap);
+}
+
+createCitiesArray();
+
+function inputCityValues(){
+	for (var i = 0; i < $('.bay').length; i++){
+		$('.bay #temp').eq(i)[0].innerHTML = 
+      cityData[$('.bay').eq(i).attr('value')].temp + '&#176';
+		$('.bay .weathericon').eq(i)[0].src = 
+      'assets/images/icons/icon-' + cityData[$('.bay').eq(i).attr('value')].icon + '.png';
+	}
+}
+
+function fetchData(arr){
+	for (var i =0; i < arr.length; i++) {
+		$.ajax({
+		url: "https://api.openweathermap.org/data/2.5/weather?id=" + 
+      arr[i] + "&appid=3c972a1a313f1b25f997f4e0fe1a3549",
+		Method: 'GET'
+		}).then(function(response){
+			cityData[response.name] = {
+				name: response.name,
+				sunrise: timeConverter(response.sys.sunrise) + 'AM',
+				sunset: timeConverter(response.sys.sunset) + 'PM',
+				forecast: response.weather[0].main,
+				humidity: response.main.humidity + '%',
+				wind: speedConverter(response.wind.speed) + ' mph at ' + response.wind.deg + '&#176;',
+				cloudiness: response.clouds.all + '%',
+				minTemp: tempConverter(response.main.temp_min) + '&#176;F',
+				maxTemp: tempConverter(response.main.temp_max) + '&#176;F',
+				temp: tempConverter(response.main.temp),
+				icon: conditionsObj[response.weather[0].icon],
+			};
+			inputCityValues();
+		});
+	}
+}
+
 
 function titleCase(str) {
     var splitStr = str.toLowerCase().split(' ');
@@ -56,7 +123,7 @@ function timeConverter(unix){
 
 $('.clickable').on('click', function(){
     $(".popup").removeClass("hidden");
-    var location = $(this).parent().attr('value');
+    var location = $(this).parent().attr('data');
     var queryUrl = 'http://api.openweathermap.org/data/2.5/weather?id=' + location + '&appid=ce6c4d281dc8a0dfa66efef63172fefe';
     $.ajax({
 		url:queryUrl,
@@ -89,19 +156,19 @@ $('.staricon').on('mouseover', function(){
 });
 
 $('.staricon').on('click', function(){
-    var cityName = $(this).parent().parent().attr('data');
-    // var cityId = $(this).parent().parent().attr('value');
-    if (favCities.includes(cityName)){
+    var cityName = $(this).parent().parent().attr('value');
+    var cityCode = $(this).parent().parent().attr('data');
+    if (favCities.includes(cityCode)){
         console.log("City Favorited Already")
-    } else {favCities.push(cityName);
-        $('.starred').append(`<div data="${cityName}" class="citylist"><button class="delete">x</button> ${cityName}</div>`);
+    } else {favCities.push(cityCode);
+        $('.starred').append(`<div data="${cityCode}" class="citylist"><button class="delete">x</button> ${cityName}</div>`);
         database.ref("/favorites/" + session).set(favCities);
     }
 });
 
 $(document).on('click', '.delete', function(){
     var cityName = $(this).parent().attr('data');
-    favCities= favCities.filter(e => e !== cityName);
+    favCities= favCities.filter(e => e != cityName);
     $(this).parent().remove();
     database.ref("/favorites/" + session).set(favCities)
 });
@@ -109,3 +176,4 @@ $(document).on('click', '.delete', function(){
 $('.view').on('click', function(){
     localStorage.setItem('a', session);
 });
+
