@@ -73,9 +73,6 @@ $('.clickable').on('click', function(){
         <span id="maxtemp" class="data">${tempConverter(response.main.temp_max)}&#176;F</span>
         <span id="mintemp" class="data">${tempConverter(response.main.temp_min)}&#176;F</span>
         `)
-        database.ref("/favorites/" + session).set({
-            name: response.name,
-        })
     });
 });
 
@@ -85,18 +82,31 @@ $('#close').on('click', function(){
 });
 
 $('.staricon').on('mouseover', function(){
-		$(this).attr('src', './assets/images/icons/icon-star-gold.png');
+	$(this).attr('src', './assets/images/icons/icon-star-gold.png');
 }).on('mouseleave', function(){
-		$(this).attr('src', './assets/images/icons/icon-star.png');
+	$(this).attr('src', './assets/images/icons/icon-star.png');
 }).on('click', function(){
     $(this).attr('src', './assets/images/icons/icon-star-gold.png');
 });
 
 $('.staricon').on('click', function(){
     var cityName = $(this).parent().parent().attr('data');
-    $('.starred').append(`<div class="citylist"><button class="delete">x</button> ${cityName}</div>`);
+    // var cityId = $(this).parent().parent().attr('value');
+    if (favCities.includes(cityName)){
+        console.log("City Favorited Already")
+    } else {favCities.push(cityName);
+        $('.starred').append(`<div data="${cityName}" class="citylist"><button class="delete">x</button> ${cityName}</div>`);
+        database.ref("/favorites/" + session).set(favCities);
+    }
 });
 
 $(document).on('click', '.delete', function(){
+    var cityName = $(this).parent().attr('data');
+    favCities= favCities.filter(e => e !== cityName);
     $(this).parent().remove();
+    database.ref("/favorites/" + session).set(favCities)
+});
+
+$('.view').on('click', function(){
+    localStorage.setItem('a', session);
 });
