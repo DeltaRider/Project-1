@@ -1,12 +1,28 @@
+var user;
+var session;
+var favCities = [];
+
 var config = {
-    apiKey: "AIzaSyBED2-RBxkaRUznE8g9C7YL2wQxNfZcC54",
-    authDomain: "bay-area-weather-map.firebaseapp.com",
-    databaseURL: "https://bay-area-weather-map.firebaseio.com",
-    projectId: "bay-area-weather-map",
-    storageBucket: "",
-    messagingSenderId: "466784019631"
-  };
-  firebase.initializeApp(config);
+    apiKey: "AIzaSyBa1e0L-DemkmVuqWy1XrxsrI95fP59GC8",
+    authDomain: "first-project-ac7aa.firebaseapp.com",
+    databaseURL: "https://first-project-ac7aa.firebaseio.com",
+    projectId: "first-project-ac7aa",
+    storageBucket: "first-project-ac7aa.appspot.com",
+    messagingSenderId: "1045492524479"
+};
+
+firebase.initializeApp(config);
+
+var database = firebase.database();
+var connectionsRef = database.ref("/connections");
+var connectedRef = database.ref(".info/connected");
+connectedRef.on("value", function(snap) {
+    if (snap.val()) {
+        var con = connectionsRef.push(true);
+        session = con.key;
+        con.onDisconnect().remove();
+    }
+});
 
 function titleCase(str) {
     var splitStr = str.toLowerCase().split(' ');
@@ -39,20 +55,14 @@ function timeConverter(unix){
     return time;
 }
 
-$('.bay').on('click', function(){
+$('.clickable').on('click', function(){
     $(".popup").removeClass("hidden");
-    var location = $(this).attr('value');
+    var location = $(this).parent().attr('value');
     var queryUrl = 'http://api.openweathermap.org/data/2.5/weather?id=' + location + '&appid=ce6c4d281dc8a0dfa66efef63172fefe';
     $.ajax({
 		url:queryUrl,
 		method:'GET'  
 	}).then(function(response){
-        var cities = {
-            name : response.name,
-            humidity : response.main.humidity,
-            wind_Speed : response.wind.speed,
-            icon : response.weather[0].icon
-        }
         $('#datapop').html(`<span id="name" class="data">${response.name}</span>
         <span id="sunrise" class="data">${timeConverter(response.sys.sunrise)} AM</span>
         <span id="sunset" class="data">${timeConverter(response.sys.sunset)} PM</span>
@@ -63,10 +73,30 @@ $('.bay').on('click', function(){
         <span id="maxtemp" class="data">${tempConverter(response.main.temp_max)}&#176;F</span>
         <span id="mintemp" class="data">${tempConverter(response.main.temp_min)}&#176;F</span>
         `)
+        database.ref("/favorites/" + session).set({
+            name: response.name,
+        })
     });
 });
 
 $('#close').on('click', function(){
     $(".popup").addClass("hidden");
     $("#datapop").html(``);
+});
+
+$('.staricon').on('mouseover', function(){
+		$(this).attr('src', './assets/images/icons/icon-star-gold.png');
+}).on('mouseleave', function(){
+		$(this).attr('src', './assets/images/icons/icon-star.png');
+}).on('click', function(){
+    $(this).attr('src', './assets/images/icons/icon-star-gold.png');
+});
+
+$('.staricon').on('click', function(){
+    var cityName = $(this).parent().parent().attr('data');
+    $('.starred').append(`<div class="citylist"><button class="delete">x</button> ${cityName}</div>`);
+});
+
+$(document).on('click', '.delete', function(){
+    $(this).parent().remove();
 });

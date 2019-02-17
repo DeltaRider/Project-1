@@ -58,6 +58,7 @@ html, body {
    background-color:rgba(0, 0, 0, 0.1);
    width: 500px;
    height: 400px; 
+   overflow: scroll;
 }
 
 /* Starred View Button */
@@ -123,6 +124,23 @@ html, body {
     float: left;
     text-align: center;
     vertical-align: middle;
+}
+
+.flexsj {
+    height: 30px;
+    width: 85px;
+    float: left;
+}
+
+.flexsf {
+    height: 30px;
+    width: 110px;
+    float: left;
+}
+.flexoak {
+    height: 30px;
+    width: 70px;
+    float: right;
 }
 
 #sj {
@@ -282,4 +300,23 @@ html, body {
     top: 368px;
     left: 633px;
     font-size: 20px;
+}
+
+.citylist {
+    color: grey;
+    font-size: 20px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.delete {
+    color: black;
+    font-size: 8px;
+    vertical-align: middle;
+    margin-right: 5px;
+    margin-bottom: 4px;
+}
+
+.delete:hover {
+    color: red;
 }
