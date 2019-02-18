@@ -101,3 +101,71 @@ html, body {
     padding-left: 30px;
     margin-top: 10px;
 }
+
+.data {
+    font-family: maintext;
+    color: white;
+}
+
+#name {
+    position: absolute;
+    top: 9px;
+    left: 53px;
+    font-size: 25px;
+}
+
+#sunrise {
+    position: absolute;
+    top: 54px;
+    left: 16px;
+    font-size: 15px;
+}
+
+#sunset {
+    position: absolute;
+    top: 54px;
+    left: 207px;
+    font-size: 15px;
+}
+
+#forecast {
+    position: absolute;
+    top: 88px;
+    left: 16px;
+    font-size: 15px;
+}
+
+#humid {
+    position: absolute;
+    top: 88px;
+    left: 207px;
+    font-size: 15px;
+}
+
+#wind {
+    position: absolute;
+    top: 123px;
+    left: 16px;
+    font-size: 15px;
+}
+
+#cloud {
+    position: absolute;
+    top: 123px;
+    left: 207px;
+    font-size: 15px;
+}
+
+#maxtemp {
+    position: absolute;
+    top: 158px;
+    left: 16px;
+    font-size: 15px;
+}
+
+#mintemp {
+    position: absolute;
+    top: 158px;
+    left: 207px;
+    font-size: 15px;
+}
