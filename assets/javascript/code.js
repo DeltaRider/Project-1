@@ -180,7 +180,7 @@ $('#popstar').on('mouseover', function(){
     } else {favCities.push(locGrab);
         $(this).attr('src', './assets/images/icons/icon-star-gold.png')
         $('.container').find(`[data='${locGrab}']`).children().children().attr('fav', 'y').attr('src','./assets/images/icons/icon-star-gold.png');
-        $('.starred').append(`<div id="${divName}" data="${locGrab}" class="citylist"><button class="delete">x</button> ${nameGrab}</div>`);
+        $('.starred').append(`<div id="${divName}" data="${locGrab}" class="citylist"><button class="delete">x</button><span class="listitems"> ${nameGrab}</span></div>`);
         database.ref("/favorites/" + session).set(favCities);
     }
 });
@@ -207,7 +207,7 @@ $('.staricon').on('mouseover', function(){
     if (favCities.includes(cityCode)){
         $('#popstar').attr('src', './assets/images/icons/icon-star-white.png');
     } else {favCities.push(cityCode);
-        $('.starred').append(`<div id="${divName}" data="${cityCode}" class="citylist"><button class="delete">x</button> ${cityName}</div>`);
+        $('.starred').append(`<div id="${divName}" data="${cityCode}" class="citylist"><button class="delete">x</button><span class="listitems"> ${cityName}</span></div>`);
         database.ref("/favorites/" + session).set(favCities);
         $('#popstar').attr('src', './assets/images/icons/icon-star-gold.png');
     }
@@ -233,6 +233,34 @@ $(document).on('click', '.delete', function(){
     favCities= favCities.filter(e => e != cityName);
     $(this).parent().remove();
     database.ref("/favorites/" + session).set(favCities)
+});
+
+// OnClick: Starred Places Names Popup
+$(document).on('click', '.listitems', function(){
+    $(".popup").removeClass("hidden");
+    var location = $(this).parent().attr('data');
+    locGrab = location;
+    $(".popup").attr('data', `${location}`);
+    var queryUrl = 'http://api.openweathermap.org/data/2.5/weather?id=' + location + '&appid=ce6c4d281dc8a0dfa66efef63172fefe';
+    $.ajax({
+		url:queryUrl,
+		method:'GET'  
+	}).then(function(response){
+        nameGrab = response.name;
+        $('#datapop').html(`<span id="name" class="data">${response.name}</span>
+        <span id="sunrise" class="data">${timeConverter(response.sys.sunrise)} AM</span>
+        <span id="sunset" class="data">${timeConverter(response.sys.sunset)} PM</span>
+        <span id="forecast" class="data">${titleCase(response.weather[0].description)}</span>
+        <span id="humid" class="data">${response.main.humidity}%</span>
+        <span id="wind" class="data">${speedConverter(response.wind.speed)} mph at ${rounder(response.wind.deg)}&#176;</span>
+        <span id="cloud" class="data">${response.clouds.all}%</span>
+        <span id="maxtemp" class="data">${tempConverter(response.main.temp_max)}&#176;F</span>
+        <span id="mintemp" class="data">${tempConverter(response.main.temp_min)}&#176;F</span>
+        `)
+        if (favCities.includes(location)){
+            $('#popstar').attr('src','./assets/images/icons/icon-star-gold.png')
+        } else $('#popstar').attr('src','./assets/images/icons/icon-star-white.png')
+    });
 });
 
 // OnClick: Next Page Data Pass
