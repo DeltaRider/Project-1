@@ -1,3 +1,4 @@
+// Icon Associations
 var conditionsObj = {
 	'01d': 'clear',
 	'01n': 'clearnight',
@@ -19,6 +20,7 @@ var conditionsObj = {
 	'50n': 'fog'
 };
 
+// Database Initiation 
 var config = {
     apiKey: "AIzaSyBa1e0L-DemkmVuqWy1XrxsrI95fP59GC8",
     authDomain: "first-project-ac7aa.firebaseapp.com",
@@ -41,12 +43,15 @@ connectedRef.on("value", function(snap) {
     }
 });
 
+// Global Variables
 var session;
 var favCities = [];
 var citiesOnMap = [];
 var cityData = [];
 var locGrab;
+var nameGrab;
 
+// Live Data on Page Load/Refresh
 function createCitiesArray() {
 	for (var i = 0; i < $('.bay').length; i++) {
 	citiesOnMap.push($('.bay').eq(i).attr('data'));
@@ -90,7 +95,7 @@ function fetchData(arr){
 	}
 }
 
-
+// Utility Functions
 function titleCase(str) {
     var splitStr = str.toLowerCase().split(' ');
     for (var i = 0; i < splitStr.length; i++) {
@@ -107,7 +112,12 @@ function tempConverter(num) {
 
 function speedConverter(mps){
     var mph = (mps * 3600 / 1610.3*1000)/1000;
-    var round = Math.round(mph * 10) / 10
+    var round = Math.round(mph * 10) / 10;
+    return round;
+}
+
+function rounder(deg){
+    var round = Math.round(deg * 10) / 10;
     return round;
 }
 
@@ -122,6 +132,7 @@ function timeConverter(unix){
     return time;
 }
 
+// OnClick: City Name Divs and Popup Data
 $('.clickable').on('click', function(){
     $(".popup").removeClass("hidden");
     var location = $(this).parent().attr('data');
@@ -132,12 +143,13 @@ $('.clickable').on('click', function(){
 		url:queryUrl,
 		method:'GET'  
 	}).then(function(response){
+        nameGrab = response.name;
         $('#datapop').html(`<span id="name" class="data">${response.name}</span>
         <span id="sunrise" class="data">${timeConverter(response.sys.sunrise)} AM</span>
         <span id="sunset" class="data">${timeConverter(response.sys.sunset)} PM</span>
         <span id="forecast" class="data">${titleCase(response.weather[0].description)}</span>
         <span id="humid" class="data">${response.main.humidity}%</span>
-        <span id="wind" class="data">${speedConverter(response.wind.speed)} mph at ${response.wind.deg}&#176;</span>
+        <span id="wind" class="data">${speedConverter(response.wind.speed)} mph at ${rounder(response.wind.deg)}&#176;</span>
         <span id="cloud" class="data">${response.clouds.all}%</span>
         <span id="maxtemp" class="data">${tempConverter(response.main.temp_max)}&#176;F</span>
         <span id="mintemp" class="data">${tempConverter(response.main.temp_min)}&#176;F</span>
@@ -148,10 +160,7 @@ $('.clickable').on('click', function(){
     });
 });
 
-
-
-
-
+// OnClick: Popup Star Functionality
 $('#popstar').on('mouseover', function(){
     if ($('.container').find(`[data='${locGrab}']`).children().children().attr('fav') == 'n' && $(this).attr('src') == './assets/images/icons/icon-star-white.png'){
         $(this).attr('src', './assets/images/icons/icon-star-gold.png');
@@ -160,18 +169,28 @@ $('#popstar').on('mouseover', function(){
     if ($('.container').find(`[data='${locGrab}']`).children().children().attr('fav') == 'n' && $(this).attr('src') == './assets/images/icons/icon-star-gold.png'){
         $(this).attr('src', './assets/images/icons/icon-star-white.png');
     }
+}).on('click', function(){
+    divName = nameGrab.replace(/\s/g, '');
+    if (favCities.includes(locGrab)){
+        $(this).attr('src', './assets/images/icons/icon-star-white.png');
+        favCities= favCities.filter(e => e != locGrab);
+        database.ref("/favorites/" + session).set(favCities);
+        $('.starred #'+divName).remove();
+        $('.container').find(`[data='${locGrab}']`).children().children().attr('fav', 'n').attr('src','./assets/images/icons/icon-star.png');
+    } else {favCities.push(locGrab);
+        $('.container').find(`[data='${locGrab}']`).children().children().attr('fav', 'y').attr('src','./assets/images/icons/icon-star-gold.png');
+        $('.starred').append(`<div id="${divName}" data="${locGrab}" class="citylist"><button class="delete">x</button> ${nameGrab}</div>`);
+        database.ref("/favorites/" + session).set(favCities);
+    }
 });
 
-
-
-
-
-
+// OnClick: Close Popup
 $('#close').on('click', function(){
     $(".popup").addClass("hidden");
     $("#datapop").html(``);
 });
 
+// OnClick: City Name Divs Star Functionality
 $('.staricon').on('mouseover', function(){
     if ($(this).attr('fav') == 'n'){
         $(this).attr('src', './assets/images/icons/icon-star-gold.png');
@@ -202,6 +221,7 @@ $('.staricon').on('mouseover', function(){
     }
 });
 
+// OnClick: Starred Places Delete Functionality
 $(document).on('click', '.delete', function(){
     var cityName = $(this).parent().attr('data');
     $('.container').find(`[data='${cityName}']`).children().children().attr('fav','n').attr('src', './assets/images/icons/icon-star.png');
@@ -213,6 +233,7 @@ $(document).on('click', '.delete', function(){
     database.ref("/favorites/" + session).set(favCities)
 });
 
+// OnClick: Next Page Data Pass
 $('.view').on('click', function(){
     localStorage.setItem('a', session);
 });
