@@ -118,6 +118,10 @@ html, body {
     margin-top: 8px;
 }
 
+#lg #temp {
+    margin-top: 4px;
+}
+
 .rightboxL {
     height: 30px;
     width: 30px;
@@ -140,6 +144,12 @@ html, body {
 .flexoak {
     height: 30px;
     width: 75px;
+    float: right;
+}
+
+.flexlg {
+    height: 20px;
+    width: 60px;
     float: right;
 }
 
@@ -176,6 +186,397 @@ html, body {
     width: auto;
     margin-top: 7px;
 }
+
+#lg img {
+    height: 15px;
+    width: auto;
+    margin-top: 3px;
+}
+
+#lg {
+    width: 160px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    right: 133px;
+    bottom: 211px;
+}
+
+#lg .leftboxR {
+    height: 20px;
+    width: 30px;
+    float: right;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#lg .midboxR {
+    height: 20px;
+    width: 40px;
+    float: right;
+    text-align: center;
+    vertical-align: middle;
+    font-family: maintext;
+}
+
+#lg .rightboxR {
+    height: 20px;
+    width: 30px;
+    float: right;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#mh {
+    width: 172px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    right: 213px;
+    bottom: 180px;
+}
+
+#mh img {
+    height: 15px;
+    width: auto;
+    margin-top: 3px;
+}
+
+#mh #temp {
+    margin-top: 4px;
+}
+
+#mh .leftboxL {
+    height: 20px;
+    width: 30px;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#mh .midboxL {
+    height: 20px;
+    width: 40px;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+    font-family: maintext;
+}
+
+#mh .rightboxL {
+    height: 20px;
+    width: 30px;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.flexmh {
+    height: 20px;
+    width: 70px;
+    float: right;
+}
+
+#sc {
+    width: 172px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    right: 306px;
+    bottom: 133px;
+}
+
+#sc img {
+    height: 15px;
+    width: auto;
+    margin-top: 3px;
+}
+
+#sc #temp {
+    margin-top: 4px;
+}
+
+#sc .leftboxL {
+    height: 20px;
+    width: 30px;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#sc .midboxL {
+    height: 20px;
+    width: 40px;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+    font-family: maintext;
+}
+
+#sc .rightboxL {
+    height: 20px;
+    width: 30px;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.flexsc {
+    height: 20px;
+    width: 70px;
+    float: right;
+}
+
+#gr {
+    width: 144px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    right: 90px;
+    bottom: 143px;
+}
+
+#gr img {
+    height: 15px;
+    width: auto;
+    margin-top: 3px;
+}
+
+#gr #temp {
+    margin-top: 4px;
+}
+
+#gr .leftboxR {
+    height: 20px;
+    width: 30px;
+    float: right;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#gr .midboxR {
+    height: 20px;
+    width: 40px;
+    float: right;
+    text-align: center;
+    vertical-align: middle;
+    font-family: maintext;
+}
+
+#gr .rightboxR {
+    height: 20px;
+    width: 30px;
+    float: right;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.flexgr {
+    height: 20px;
+    width: 44px;
+    float: right;
+}
+
+#wv {
+    width: 175px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    right: 161px;
+    bottom: 111px;
+}
+
+#wv img {
+    height: 15px;
+    width: auto;
+    margin-top: 3px;
+}
+
+#wv #temp {
+    margin-top: 4px;
+}
+
+#wv .leftboxL {
+    height: 20px;
+    width: 30px;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#wv .midboxL {
+    height: 20px;
+    width: 40px;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+    font-family: maintext;
+}
+
+#wv .rightboxL {
+    height: 20px;
+    width: 30px;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.flexwv {
+    height: 20px;
+    width: 75px;
+    float: right;
+}
+
+#hl {
+    width: 150px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    right: 0px;
+    bottom: 93px;
+}
+
+#hl img {
+    height: 15px;
+    width: auto;
+    margin-top: 3px;
+}
+
+#hl #temp {
+    margin-top: 4px;
+}
+
+#hl .leftboxR {
+    height: 20px;
+    width: 30px;
+    float: right;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#hl .midboxR {
+    height: 20px;
+    width: 40px;
+    float: right;
+    text-align: center;
+    vertical-align: middle;
+    font-family: maintext;
+}
+
+#hl .rightboxR {
+    height: 20px;
+    width: 30px;
+    float: right;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.flexhl {
+    height: 20px;
+    width: 50px;
+    float: right;
+}
+
+#sl {
+    width: 160px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    right: 110px;
+    bottom: 37px;
+}
+
+#sl img {
+    height: 15px;
+    width: auto;
+    margin-top: 3px;
+}
+
+#sl #temp {
+    margin-top: 4px;
+}
+
+#sl .leftboxR {
+    height: 20px;
+    width: 30px;
+    float: right;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#sl .midboxR {
+    height: 20px;
+    width: 40px;
+    float: right;
+    text-align: center;
+    vertical-align: middle;
+    font-family: maintext;
+}
+
+#sl .rightboxR {
+    height: 20px;
+    width: 30px;
+    float: right;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.flexsl {
+    height: 20px;
+    width: 60px;
+    float: right;
+}
+
+#mr {
+    width: 157px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    right: 274px;
+    bottom: 27px;
+}
+
+#mr img {
+    height: 15px;
+    width: auto;
+    margin-top: 3px;
+}
+
+#mr #temp {
+    margin-top: 4px;
+}
+
+#mr .leftboxL {
+    height: 20px;
+    width: 30px;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#mr .midboxL {
+    height: 20px;
+    width: 40px;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+    font-family: maintext;
+}
+
+#mr .rightboxL {
+    height: 20px;
+    width: 30px;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.flexmr {
+    height: 20px;
+    width: 57px;
+    float: right;
+}
+
 
 .leftboxR {
     height: 30px;
