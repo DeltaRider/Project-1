@@ -178,6 +178,7 @@ $('#popstar').on('mouseover', function(){
         $('.starred #'+divName).remove();
         $('.container').find(`[data='${locGrab}']`).children().children().attr('fav', 'n').attr('src','./assets/images/icons/icon-star.png');
     } else {favCities.push(locGrab);
+        $(this).attr('src', './assets/images/icons/icon-star-gold.png')
         $('.container').find(`[data='${locGrab}']`).children().children().attr('fav', 'y').attr('src','./assets/images/icons/icon-star-gold.png');
         $('.starred').append(`<div id="${divName}" data="${locGrab}" class="citylist"><button class="delete">x</button> ${nameGrab}</div>`);
         database.ref("/favorites/" + session).set(favCities);
@@ -204,10 +205,11 @@ $('.staricon').on('mouseover', function(){
     var cityCode = $(this).parent().parent().attr('data');
     divName = cityName.replace(/\s/g, '');
     if (favCities.includes(cityCode)){
-        console.log("City Favorited Already")
+        $('#popstar').attr('src', './assets/images/icons/icon-star-white.png');
     } else {favCities.push(cityCode);
         $('.starred').append(`<div id="${divName}" data="${cityCode}" class="citylist"><button class="delete">x</button> ${cityName}</div>`);
         database.ref("/favorites/" + session).set(favCities);
+        $('#popstar').attr('src', './assets/images/icons/icon-star-gold.png');
     }
     if ($(this).attr('fav') == 'n'){
         $(this).attr('src', './assets/images/icons/icon-star-gold.png');
