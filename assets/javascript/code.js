@@ -45,6 +45,7 @@ var session;
 var favCities = [];
 var citiesOnMap = [];
 var cityData = [];
+var locGrab;
 
 function createCitiesArray() {
 	for (var i = 0; i < $('.bay').length; i++) {
@@ -124,6 +125,8 @@ function timeConverter(unix){
 $('.clickable').on('click', function(){
     $(".popup").removeClass("hidden");
     var location = $(this).parent().attr('data');
+    locGrab = location;
+    $(".popup").attr('data', `${location}`);
     var queryUrl = 'http://api.openweathermap.org/data/2.5/weather?id=' + location + '&appid=ce6c4d281dc8a0dfa66efef63172fefe';
     $.ajax({
 		url:queryUrl,
@@ -139,8 +142,30 @@ $('.clickable').on('click', function(){
         <span id="maxtemp" class="data">${tempConverter(response.main.temp_max)}&#176;F</span>
         <span id="mintemp" class="data">${tempConverter(response.main.temp_min)}&#176;F</span>
         `)
+        if (favCities.includes(location)){
+            $('#popstar').attr('src','./assets/images/icons/icon-star-gold.png')
+        } else $('#popstar').attr('src','./assets/images/icons/icon-star-white.png')
     });
 });
+
+
+
+
+
+$('#popstar').on('mouseover', function(){
+    if ($('.container').find(`[data='${locGrab}']`).children().children().attr('fav') == 'n' && $(this).attr('src') == './assets/images/icons/icon-star-white.png'){
+        $(this).attr('src', './assets/images/icons/icon-star-gold.png');
+    } 
+}).on('mouseleave', function(){
+    if ($('.container').find(`[data='${locGrab}']`).children().children().attr('fav') == 'n' && $(this).attr('src') == './assets/images/icons/icon-star-gold.png'){
+        $(this).attr('src', './assets/images/icons/icon-star-white.png');
+    }
+});
+
+
+
+
+
 
 $('#close').on('click', function(){
     $(".popup").addClass("hidden");
@@ -180,6 +205,9 @@ $('.staricon').on('mouseover', function(){
 $(document).on('click', '.delete', function(){
     var cityName = $(this).parent().attr('data');
     $('.container').find(`[data='${cityName}']`).children().children().attr('fav','n').attr('src', './assets/images/icons/icon-star.png');
+    if (cityName == locGrab){
+        $('#popstar').attr('src', './assets/images/icons/icon-star-white.png');
+    }
     favCities= favCities.filter(e => e != cityName);
     $(this).parent().remove();
     database.ref("/favorites/" + session).set(favCities)
