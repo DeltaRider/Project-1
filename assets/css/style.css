@@ -577,6 +577,155 @@ html, body {
     float: right;
 }
 
+#dc {
+    width: 172px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    right: 350px;
+    bottom: 362px;
+}
+
+#dc img {
+    height: 15px;
+    width: auto;
+    margin-top: 3px;
+}
+
+#dc #temp {
+    margin-top: 4px;
+}
+
+#dc .leftboxL {
+    height: 20px;
+    width: 30px;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#dc .midboxL {
+    height: 20px;
+    width: 40px;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+    font-family: maintext;
+}
+
+#dc .rightboxL {
+    height: 20px;
+    width: 30px;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.flexdc {
+    height: 20px;
+    width: 72px;
+    float: right;
+}
+
+#pa {
+    width: 161px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    right: 238px;
+    bottom: 300px;
+}
+
+#pa img {
+    height: 15px;
+    width: auto;
+    margin-top: 3px;
+}
+
+#pa #temp {
+    margin-top: 4px;
+}
+
+#pa .leftboxR {
+    height: 20px;
+    width: 30px;
+    float: right;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#pa .midboxR {
+    height: 20px;
+    width: 40px;
+    float: right;
+    text-align: center;
+    vertical-align: middle;
+    font-family: maintext;
+}
+
+#pa .rightboxR {
+    height: 20px;
+    width: 30px;
+    float: right;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.flexpa {
+    height: 20px;
+    width: 61px;
+    float: right;
+}
+
+#sv {
+    width: 178px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    right: 132px;
+    bottom: 277px;
+}
+
+#sv img {
+    height: 15px;
+    width: auto;
+    margin-top: 3px;
+}
+
+#sv #temp {
+    margin-top: 4px;
+}
+
+#sv .leftboxR {
+    height: 20px;
+    width: 30px;
+    float: right;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#sv .midboxR {
+    height: 20px;
+    width: 40px;
+    float: right;
+    text-align: center;
+    vertical-align: middle;
+    font-family: maintext;
+}
+
+#sv .rightboxR {
+    height: 20px;
+    width: 30px;
+    float: right;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.flexsv {
+    height: 20px;
+    width: 78px;
+    float: right;
+}
 
 .leftboxR {
     height: 30px;
