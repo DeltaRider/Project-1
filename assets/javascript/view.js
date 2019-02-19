@@ -55,18 +55,19 @@ function timeConverter(unix){
 userRef.on("value", function(snapshot) {
     favCities = snapshot.val();
     for (var i=0; i<favCities.length; i++){
-        $('.over').append(`<div class="popup"></div>`)
-        fetchData(favCities);
+        var cityCode = favCities[i];
+        $('.over').append(`<div class="popup" data="${favCities[i]}"></div>`)
+        fetchData(cityCode);
     };
 });
 
 function fetchData(arr){
-    for (var i=0; i<arr.length; i++){
+        var cityCode = arr;
         $.ajax({
-            url:'http://api.openweathermap.org/data/2.5/weather?id=' + arr[i] + '&appid=ce6c4d281dc8a0dfa66efef63172fefe',
+            url:'http://api.openweathermap.org/data/2.5/weather?id=' + cityCode + '&appid=ce6c4d281dc8a0dfa66efef63172fefe',
             method:'GET'  
         }).then(function(response){
-            $('.popup').html(`<img id="popstar" src="./assets/images/icons/icon-star-gold.png" alt="Star">
+            $(`[data="${cityCode}"]`).html(`<img id="popstar" src="./assets/images/icons/icon-star-gold.png" alt="Star">
             <span id="name" class="data">${response.name}</span>
             <span id="sunrise" class="data">${timeConverter(response.sys.sunrise)} AM</span>
             <span id="sunset" class="data">${timeConverter(response.sys.sunset)} PM</span>
@@ -78,5 +79,4 @@ function fetchData(arr){
             <span id="mintemp" class="data">${tempConverter(response.main.temp_min)}&#176;F</span>
             `)
         });
-    };
 };
