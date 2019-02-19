@@ -1335,6 +1335,57 @@ html, body {
     float: right;
 }
 
+#con {
+    width: 70px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    right: 238px;
+    top: 186px;
+}
+
+#con img {
+    height: 13px;
+    width: auto;
+    margin-top: 20px;
+}
+
+#con #temp {
+    margin-top: 20px;
+}
+
+#con .leftboxR {
+    height: 20px;
+    width: 20px;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#con .midboxR {
+    height: 20px;
+    width: 30px;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+    font-family: maintext;
+    font-size: 13px;
+}
+
+#con .rightboxR {
+    height: 20px;
+    width: 20px;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.flexcon {
+    height: 20px;
+    width: 50px;
+    float: right;
+}
+
 #lo {
     width: 129px;
     height: 20px;
