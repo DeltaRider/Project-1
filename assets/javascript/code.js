@@ -205,7 +205,7 @@ $('.staricon').on('mouseover', function(){
     var cityCode = $(this).parent().parent().attr('data');
     divName = cityName.replace(/\s/g, '');
     if (favCities.includes(cityCode)){
-        $('#popstar').attr('src', './assets/images/icons/icon-star-white.png');
+        $(`[data="${cityCode}"]`).children().children().attr('src', './assets/images/icons/icon-star-white.png');
     } else {favCities.push(cityCode);
         $('.starred').append(`<div id="${divName}" data="${cityCode}" class="citylist"><button class="delete">x</button><span class="listitems"> ${cityName}</span></div>`);
         database.ref("/favorites/" + session).set(favCities);
