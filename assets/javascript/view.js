@@ -53,11 +53,13 @@ function timeConverter(unix){
 
 // Data Retrieval and Plotting Loop
 userRef.on("value", function(snapshot) {
-    favCities = snapshot.val();
-    for (var i=0; i<favCities.length; i++){
-        var cityCode = favCities[i];
-        $('.over').append(`<div class="popup" data="${favCities[i]}"></div>`)
-        fetchData(cityCode);
+    if(snapshot.val() !== null){
+        favCities = snapshot.val();
+        for (var i=0; i<favCities.length; i++){
+            var cityCode = favCities[i];
+            $('.over').append(`<div class="popup" data="${favCities[i]}"></div>`)
+            fetchData(cityCode);
+        };
     };
 });
 

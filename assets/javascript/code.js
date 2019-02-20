@@ -61,16 +61,15 @@ function createCitiesArray() {
 
 createCitiesArray();
 
-function inputCityValues(){
-	for (var i = 0; i < $('.bay').length; i++){
-		$('.bay #temp').eq(i)[0].innerHTML = 
-      cityData[$('.bay').eq(i).attr('value')].temp + '&#176';
-		$('.bay .weathericon').eq(i)[0].src = 
-      'assets/images/icons/icon-' + cityData[$('.bay').eq(i).attr('value')].icon + '.png';
-	}
+function inputCityValues(cityRes, i){
+    $('.bay #temp').eq(i)[0].innerHTML = 
+        cityRes.temp + '&#176';
+    $('.bay .weathericon').eq(i)[0].src = 
+        'assets/images/icons/icon-' + cityRes.icon + '.png';
 }
 
 function fetchData(arr){
+    var j=0;
 	for (var i =0; i < arr.length; i++) {
 		$.ajax({
 		url: "https://api.openweathermap.org/data/2.5/weather?id=" + 
@@ -90,7 +89,8 @@ function fetchData(arr){
 				temp: tempConverter(response.main.temp),
 				icon: conditionsObj[response.weather[0].icon],
 			};
-			inputCityValues();
+			inputCityValues(cityData[response.name], j);
+            j++;
 		});
 	}
 }
